@@ -1,19 +1,25 @@
-<!DOCTYPE html><html lang="th">
+<!DOCTYPE html>
+<html lang="th">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ดูดวงด้วยลายนิ้วมือ</title>
-  <link rel="stylesheet" href="style.css">
+  <title>DooDuang – ดูดวงด้วยลายนิ้วมือ</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@400;600&display=swap');
     body {
       font-family: 'Prompt', sans-serif;
-      background: linear-gradient(to bottom, #e0f7fa, #fff);
+      background: linear-gradient(to bottom, #e0f7fa, #ffffff);
       text-align: center;
       padding: 40px 20px;
+      margin: 0;
     }
     .container {
       max-width: 500px;
       margin: auto;
+    }
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
     }
     .scanner {
       margin-top: 30px;
@@ -21,7 +27,7 @@
     }
     .scanner img {
       width: 200px;
-      opacity: 0.6;
+      opacity: 0.8;
       transition: transform 0.3s;
     }
     .scanner img.active {
@@ -54,7 +60,7 @@
   <div class="container">
     <h1>ดูดวงด้วยลายนิ้วมือ</h1>
     <div class="scanner" id="scanner">
-      <img src="https://i.imgur.com/0X5a2FH.png" alt="สแกนลายนิ้วมือ" id="fingerprint">
+      <img src="https://i.postimg.cc/Zq3xPM8n/fingerprint.png" alt="สแกนลายนิ้วมือ" id="fingerprint">
       <p id="scan-text">แตะที่ลายนิ้วมือเพื่อเริ่มการทำนาย</p>
     </div>
     <div class="result hidden" id="result-box">
@@ -62,7 +68,9 @@
       <p id="fortune-text"></p>
       <button onclick="scanAgain()">ลองอีกครั้ง</button>
     </div>
-  </div>  <script>
+  </div>
+
+  <script>
     const fingerprint = document.getElementById('fingerprint');
     const scanText = document.getElementById('scan-text');
     const resultBox = document.getElementById('result-box');
@@ -99,5 +107,6 @@
       scanner.classList.remove('hidden');
       scanText.textContent = 'แตะที่ลายนิ้วมือเพื่อเริ่มการทำนาย';
     }
-  </script></body>
+  </script>
+</body>
 </html>
