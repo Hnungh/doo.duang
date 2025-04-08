@@ -1,0 +1,103 @@
+<!DOCTYPE html><html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ดูดวงด้วยลายนิ้วมือ</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Prompt', sans-serif;
+      background: linear-gradient(to bottom, #e0f7fa, #fff);
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+    }
+    .scanner {
+      margin-top: 30px;
+      cursor: pointer;
+    }
+    .scanner img {
+      width: 200px;
+      opacity: 0.6;
+      transition: transform 0.3s;
+    }
+    .scanner img.active {
+      animation: scan 2s infinite;
+    }
+    @keyframes scan {
+      0% { transform: scale(1); opacity: 0.7; }
+      50% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.7; }
+    }
+    .result {
+      margin-top: 30px;
+    }
+    .hidden {
+      display: none;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      background: #00bcd4;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>ดูดวงด้วยลายนิ้วมือ</h1>
+    <div class="scanner" id="scanner">
+      <img src="https://i.imgur.com/0X5a2FH.png" alt="สแกนลายนิ้วมือ" id="fingerprint">
+      <p id="scan-text">แตะที่ลายนิ้วมือเพื่อเริ่มการทำนาย</p>
+    </div>
+    <div class="result hidden" id="result-box">
+      <h2>คำทำนายของคุณคือ:</h2>
+      <p id="fortune-text"></p>
+      <button onclick="scanAgain()">ลองอีกครั้ง</button>
+    </div>
+  </div>  <script>
+    const fingerprint = document.getElementById('fingerprint');
+    const scanText = document.getElementById('scan-text');
+    const resultBox = document.getElementById('result-box');
+    const fortuneText = document.getElementById('fortune-text');
+    const scanner = document.getElementById('scanner');
+
+    const fortunes = [
+      "วันนี้คุณจะเจอเรื่องดีๆ โดยไม่คาดฝัน!",
+      "มีเกณฑ์ได้รับโชคลาภเล็กๆ น้อยๆ",
+      "ระวังคำพูด อาจทำให้เข้าใจผิด",
+      "มีคนแอบปลื้มคุณอยู่",
+      "วันนี้เหมาะกับการเริ่มต้นสิ่งใหม่ๆ",
+      "พักผ่อนให้เพียงพอ สุขภาพสำคัญที่สุด",
+      "การงานราบรื่น มีคนคอยช่วยเหลือ",
+      "ความรักกำลังจะเข้ามาแบบไม่ทันตั้งตัว"
+    ];
+
+    fingerprint.addEventListener('click', () => {
+      fingerprint.classList.add('active');
+      scanText.textContent = 'กำลังสแกน...';
+
+      setTimeout(() => {
+        fingerprint.classList.remove('active');
+        scanner.classList.add('hidden');
+        resultBox.classList.remove('hidden');
+
+        const randomIndex = Math.floor(Math.random() * fortunes.length);
+        fortuneText.textContent = fortunes[randomIndex];
+      }, 3000);
+    });
+
+    function scanAgain() {
+      resultBox.classList.add('hidden');
+      scanner.classList.remove('hidden');
+      scanText.textContent = 'แตะที่ลายนิ้วมือเพื่อเริ่มการทำนาย';
+    }
+  </script></body>
+</html>
