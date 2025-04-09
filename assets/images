@@ -1,8 +1,0 @@
-game-website/
-├── index.html
-└── assets/
-    └── images/
-        ├── logo.png
-        ├── game1.jpg
-        ├── game2.jpg
-        └── ...
