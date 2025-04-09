@@ -20,17 +20,11 @@
     }
     .carousel-track {
       display: flex;
-      width: 300%;
-      animation: slide 15s infinite;
+      width: 100%;
+      transition: transform 1s ease-in-out; /* เพิ่ม transition สำหรับการเลื่อน */
     }
     .carousel-item {
       flex: 0 0 100%;
-    }
-    @keyframes slide {
-      0% { transform: translateX(0%); }
-      33% { transform: translateX(-100%); }
-      66% { transform: translateX(-200%); }
-      100% { transform: translateX(0%); }
     }
     .card {
       background-color: #1a1a1a;
@@ -193,6 +187,20 @@
     });
 
     loadPage("home");
+
+    // Carousel Auto Scroll
+    let currentIndex = 0;
+    const carouselItems = document.querySelectorAll('.carousel-item');
+    const totalItems = carouselItems.length;
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % totalItems;
+      const offset = -currentIndex * 100; // คำนวณการเลื่อน
+      document.querySelector('.carousel-track').style.transform = `translateX(${offset}%)`;
+    }
+
+    // เลื่อนทุก 3 วินาที
+    setInterval(nextSlide, 3000);
   </script>
 </body>
 </html>
